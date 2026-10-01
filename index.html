@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ailece Finansal Okuryazarız</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+
+        :root {
+            --primary: #004A99;
+            --secondary: #27ae60;
+            --bg-color: #F4F7F6;
+            --card-bg: #FFFFFF;
+            --text-main: #333333;
+            --text-muted: #666666;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #e0c3fc 0%, #8ec5fc 100%);
+            min-height: 100vh;
+            color: var(--text-main);
+            padding: 40px 20px;
+        }
+
+        /* Ana Taşıyıcı Kutu */
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: var(--card-bg);
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+            position: relative;
+        }
+
+        /* Üst Başlıklar ve Slogan */
+        .header-section {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .slogan {
+            font-size: 24px;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 10px;
+            letter-spacing: -0.5px;
+        }
+
+        .main-title {
+            display: inline-block;
+            background-color: #eef9f1;
+            color: var(--secondary);
+            padding: 8px 20px;
+            border-radius: 30px;
+            font-size: 16px;
+            font-weight: 600;
+            border: 2px solid #bce6cb;
+        }
+
+        /* 12'li Kutu (Grid) Tasarımı (2'li yan yana) */
+        .grid-container {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr); /* 2'li yan yana yapan komut */
+            gap: 20px;
+        }
+
+        .term-card {
+            background-color: #F8FAFC;
+            border: 2px solid #E1E8F0;
+            padding: 20px;
+            border-radius: 12px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: 600;
+            font-size: 16px;
+            color: var(--primary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 90px;
+        }
+
+        .term-card:hover {
+            background-color: var(--primary);
+            color: white;
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(0, 74, 153, 0.2);
+            border-color: var(--primary);
+        }
+
+        /* İÇ SAYFA (Detay Ekranı) TASARIMI */
+        .detail-view {
+            display: none; /* Başlangıçta gizli */
+            animation: fadeIn 0.4s ease-out;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .btn-back {
+            background-color: transparent;
+            color: var(--primary);
+            border: 2px solid var(--primary);
+            padding: 8px 20px;
+            border-radius: 8px;
+            font-family: 'Poppins', sans-serif;
+            font-weight: 600;
+            cursor: pointer;
+            margin-bottom: 25px;
+            transition: all 0.3s ease;
+        }
+
+        .btn-back:hover {
+            background-color: var(--primary);
+            color: white;
+        }
+
+        .detail-title {
+            font-size: 32px;
+            color: var(--primary);
+            margin-bottom: 15px;
+            border-bottom: 2px solid #E1E8F0;
+            padding-bottom: 10px;
+        }
+
+        .detail-definition {
+            font-size: 16px;
+            color: var(--text-muted);
+            margin-bottom: 30px;
+            line-height: 1.6;
+        }
+
+        /* Bilgi, Tutum, Davranış Kutuları */
+        .info-box {
+            background-color: #F8FAFC;
+            border-left: 5px solid;
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.03);
+        }
+
+        .box-bilgi { border-color: #3498db; }
+        .box-tutum { border-color: #e74c3c; }
+        .box-davranis { border-color: var(--secondary); background-color: #eef9f1; }
+
+        .info-box h3 {
+            margin-bottom: 10px;
+            font-size: 18px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .box-bilgi h3 { color: #3498db; }
+        .box-tutum h3 { color: #e74c3c; }
+        .box-davranis h3 { color: var(--secondary); }
+
+        .info-box p {
+            font-size: 15px;
+            line-height: 1.6;
+            color: var(--text-main);
+        }
+
+        /* Mobil Uyumluluk */
+        @media (max-width: 600px) {
+            .container { padding: 25px 15px; }
+            .grid-container { grid-template-columns: 1fr; } /* Mobilde sığsın diye alt alta 1'li yapar */
+            .slogan { font-size: 20px; }
+            .detail-title { font-size: 24px; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        
+        <div id="anaEkran">
+            <div class="header-section">
+                <div class="slogan">"Ailece finansal okuryazarız, paramızı akıllıca kullanırız."</div>
+                <div class="main-title">Finansal Okuryazarlık</div>
+            </div>
+
+            <div class="grid-container" id="kutuAlani">
+                </div>
+        </div>
+
+        <div id="detayEkrani" class="detail-view">
+            <button class="btn-back" onclick="anaEkranaDon()">← Geri Dön</button>
+            
+            <h1 class="detail-title" id="d_baslik">Başlık</h1>
+            <p class="detail-definition" id="d_tanim">Tanım buraya gelecek.</p>
+
+            <div class="info-box box-bilgi">
+                <h3>🧠 Finansal Bilgi</h3>
+                <p id="d_bilgi">Bilgi metni.</p>
+            </div>
+
+            <div class="info-box box-tutum">
+                <h3>❤️ Finansal Tutum</h3>
+                <p id="d_tutum">Tutum metni.</p>
+            </div>
+
+            <div class="info-box box-davranis">
+                <h3>🏃 Finansal Davranış</h3>
+                <p id="d_davranis">Davranış metni.</p>
+            </div>
+        </div>
+
+    </div>
+
+    <script src="veri.js"></script>
+
+    <script>
+        const anaEkran = document.getElementById('anaEkran');
+        const detayEkrani = document.getElementById('detayEkrani');
+        const kutuAlani = document.getElementById('kutuAlani');
+
+        // Sayfa yüklendiğinde veri.js içindeki terimlerden 12'li kutuları oluşturur
+        window.onload = function() {
+            for (let anahtar in finansalVeriler) {
+                let veri = finansalVeriler[anahtar];
+                
+                // HTML Kutusunu oluştur
+                let kutu = document.createElement('div');
+                kutu.className = 'term-card';
+                kutu.innerText = veri.baslik;
+                
+                // Kutuya tıklanma özelliği ekle
+                kutu.onclick = function() {
+                    sayfayiAc(anahtar);
+                };
+
+                kutuAlani.appendChild(kutu);
+            }
+        };
+
+        // Kutuya Tıklanınca Çalışan Fonksiyon
+        function sayfayiAc(anahtar) {
+            let veri = finansalVeriler[anahtar];
+
+            // Detay ekranındaki metinleri doldur
+            document.getElementById('d_baslik').innerText = veri.baslik;
+            document.getElementById('d_tanim').innerText = veri.tanim;
+            document.getElementById('d_bilgi').innerText = veri.bilgi;
+            document.getElementById('d_tutum').innerText = veri.tutum;
+            document.getElementById('d_davranis').innerText = veri.davranis;
+
+            // Ana ekranı gizle, Detay ekranını göster
+            anaEkran.style.display = 'none';
+            detayEkrani.style.display = 'block';
+            
+            // Sayfayı en üste kaydır
+            window.scrollTo(0, 0);
+        }
+
+        // Geri Dön Butonuna Tıklanınca Çalışan Fonksiyon
+        function anaEkranaDon() {
+            // Detay ekranını gizle, Ana ekranı göster
+            detayEkrani.style.display = 'none';
+            anaEkran.style.display = 'block';
+        }
+    </script>
+
+</body>
+</html>
